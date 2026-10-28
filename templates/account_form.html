@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><div><p class="eyebrow">NEW ACCOUNT</p><h1>Open bank account</h1><p class="muted">Select an existing customer and branch.</p></div></div>
+<form class="form-card" method="post"><div class="form-grid">
+<label class="full">Customer *<select name="customer_id" required>{% for c in customers %}<option value="{{ c.CustomerID }}">#{{ c.CustomerID }} — {{ c.FirstName }} {{ c.LastName }}</option>{% endfor %}</select>{% if not customers %}<small>Register a customer first.</small>{% endif %}</label>
+<label>Branch *<select name="branch_id" required>{% for b in branches %}<option value="{{ b.BranchID }}">{{ b.BranchName }}</option>{% endfor %}</select></label>
+<label>Account type *<select name="account_type" required><option>Saving</option><option>Current</option><option>Salary</option></select></label>
+<label class="full">Opening balance (₹)<input type="number" name="opening_balance" min="0" step="0.01" value="0" required></label>
+</div><div class="form-actions"><a class="btn secondary" href="{{ url_for('accounts') }}">Cancel</a><button class="btn" type="submit" {% if not customers or not branches %}disabled{% endif %}>Create account</button></div></form>{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><div><p class="eyebrow">NEW RECORD</p><h1>Register customer</h1><p class="muted">Required fields are marked with *.</p></div></div>
+<form class="form-card" method="post"><div class="form-grid">
+<label>First name *<input name="first_name" required maxlength="50"></label><label>Last name *<input name="last_name" required maxlength="50"></label>
+<label>Date of birth<input type="date" name="dob"></label><label>Gender<select name="gender"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+<label>Mobile number *<input name="mobile" required maxlength="15"></label><label>Email<input type="email" name="email" maxlength="120"></label>
+<label class="full">Address<input name="address" maxlength="255"></label><label>City<input name="city" maxlength="80"></label>
+</div><div class="form-actions"><a class="btn secondary" href="{{ url_for('customers') }}">Cancel</a><button class="btn" type="submit">Save customer</button></div></form>{% endblock %}

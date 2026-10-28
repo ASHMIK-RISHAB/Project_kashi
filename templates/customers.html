@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><div><p class="eyebrow">CUSTOMER DIRECTORY</p><h1>Customers</h1><p class="muted">Customer records saved in the database.</p></div><a class="btn" href="{{ url_for('new_customer') }}">＋ Add customer</a></div>
+<div class="table-wrap"><table><thead><tr><th>ID</th><th>Customer</th><th>Mobile</th><th>Email</th><th>City</th><th>Registered</th></tr></thead><tbody>
+{% for c in customers %}<tr><td>#{{ c.CustomerID }}</td><td><strong>{{ c.FirstName }} {{ c.LastName }}</strong></td><td>{{ c.Mobile }}</td><td>{{ c.Email or '—' }}</td><td>{{ c.City or '—' }}</td><td>{{ c.RegistrationDate }}</td></tr>{% else %}<tr><td colspan="6">No customers yet. Add your first customer.</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}

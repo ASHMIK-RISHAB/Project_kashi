@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><div><p class="eyebrow">REPAYMENT REGISTER</p><h1>Loan payments</h1><p class="muted">Record a payment against a loan.</p></div></div>
+<form class="form-card" method="post"><div class="form-grid">
+<label>Loan<select name="loan_id" required>{% for l in loans %}<option value="{{ l.LoanID }}">#{{ l.LoanID }} — {{ l.LoanType }} ({{ l.LoanStatus }})</option>{% endfor %}</select></label>
+<label>Amount (₹)<input name="amount" type="number" min="0.01" step="0.01" required></label>
+<label>Payment mode<select name="payment_mode"><option>UPI</option><option>Cash</option><option>Card</option><option>Bank Transfer</option></select></label>
+</div><div class="form-actions"><button class="btn" type="submit" {% if not loans %}disabled{% endif %}>Record payment</button></div></form>
+<div class="section-head"><div><p class="eyebrow">PAYMENT HISTORY</p><h2>Recorded payments</h2></div></div>
+<div class="table-wrap"><table><thead><tr><th>Payment ID</th><th>Loan ID</th><th>Loan type</th><th>Date</th><th>Amount</th><th>Mode</th><th>Reference</th></tr></thead><tbody>
+{% for p in payments %}<tr><td>#{{ p.PaymentID }}</td><td>#{{ p.LoanID }}</td><td>{{ p.LoanType }}</td><td>{{ p.PaymentDate }}</td><td>₹{{ '%.2f'|format(p.Amount) }}</td><td>{{ p.PaymentMode }}</td><td>{{ p.ReferenceNumber }}</td></tr>{% else %}<tr><td colspan="7">No loan payments recorded.</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}

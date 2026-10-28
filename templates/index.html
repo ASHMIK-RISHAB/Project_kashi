@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Dashboard · Project KASHI{% endblock %}
+{% block content %}
+<section class="hero"><div><p class="eyebrow">BANKING OPERATIONS · DBMS PROJECT</p><h1>Simple banking.<br><span>Structured data.</span></h1><p class="muted">Manage customer records, accounts, transactions and loan records from one place.</p><div class="actions"><a class="btn" href="{{ url_for('new_customer') }}">＋ Register customer</a><a class="btn secondary" href="{{ url_for('new_account') }}">Open account</a></div></div><div class="hero-art"><div class="orbit"></div><div class="bank-card"><span>KASHI BANK</span><div class="chip"></div><strong>•••• &nbsp;•••• &nbsp;•••• &nbsp;0001</strong><small>ACADEMIC DEMO</small></div></div></section>
+<section class="stats">
+<div class="stat"><span>Total customers</span><strong>{{ stats.customers }}</strong><small>Registered profiles</small></div>
+<div class="stat"><span>Bank accounts</span><strong>{{ stats.accounts }}</strong><small>Active and inactive</small></div>
+<div class="stat"><span>Transactions</span><strong>{{ stats.transactions }}</strong><small>Recorded entries</small></div>
+<div class="stat"><span>Loan records</span><strong>{{ stats.loans }}</strong><small>Applications</small></div>
+</section>
+<div class="section-head"><div><p class="eyebrow">QUICK ACTIONS</p><h2>What do you need to do?</h2></div></div>
+<section class="action-grid">
+<a class="action-card" href="{{ url_for('new_customer') }}"><span class="action-icon">＋</span><h3>Register customer</h3><p>Create a customer record in MySQL.</p><b>Open form ↗</b></a>
+<a class="action-card" href="{{ url_for('new_account') }}"><span class="action-icon">▣</span><h3>Open account</h3><p>Connect a customer to a branch and account.</p><b>Open form ↗</b></a>
+<a class="action-card" href="{{ url_for('transactions') }}"><span class="action-icon">↔</span><h3>Move money</h3><p>Deposit, withdraw or transfer in the demo.</p><b>View transactions ↗</b></a>
+<a class="action-card" href="{{ url_for('loans') }}"><span class="action-icon">⌂</span><h3>Loan records</h3><p>Record loan applications and statuses.</p><b>Manage loans ↗</b></a>
+</section>
+{% endblock %}
