@@ -1,17 +1,36 @@
 {% extends "base.html" %}{% block title %}Dashboard · Project KASHI{% endblock %}
 {% block content %}
-<section class="hero"><div><p class="eyebrow">BANKING OPERATIONS · DBMS PROJECT</p><h1>Simple banking.<br><span>Structured data.</span></h1><p class="muted">Manage customer records, accounts, transactions and loan records from one place.</p><div class="actions"><a class="btn" href="{{ url_for('new_customer') }}">＋ Register customer</a><a class="btn secondary" href="{{ url_for('new_account') }}">Open account</a></div></div><div class="hero-art"><div class="orbit"></div><div class="bank-card"><span>KASHI BANK</span><div class="chip"></div><strong>•••• &nbsp;•••• &nbsp;•••• &nbsp;0001</strong><small>ACADEMIC DEMO</small></div></div></section>
-<section class="stats">
-<div class="stat"><span>Total customers</span><strong>{{ stats.customers }}</strong><small>Registered profiles</small></div>
-<div class="stat"><span>Bank accounts</span><strong>{{ stats.accounts }}</strong><small>Active and inactive</small></div>
-<div class="stat"><span>Transactions</span><strong>{{ stats.transactions }}</strong><small>Recorded entries</small></div>
-<div class="stat"><span>Loan records</span><strong>{{ stats.loans }}</strong><small>Applications</small></div>
+<section class="welcome">
+  <p class="eyebrow">BANKING MANAGEMENT SYSTEM</p>
+  <h1>Welcome to Project KASHI</h1>
+  <p class="muted">A student project for managing customer, account, transaction and loan records.</p>
+  <div class="actions">
+    <a class="btn" href="{{ url_for('new_customer') }}">Register a customer</a>
+    <a class="btn secondary" href="{{ url_for('new_account') }}">Open an account</a>
+  </div>
 </section>
-<div class="section-head"><div><p class="eyebrow">QUICK ACTIONS</p><h2>What do you need to do?</h2></div></div>
-<section class="action-grid">
-<a class="action-card" href="{{ url_for('new_customer') }}"><span class="action-icon">＋</span><h3>Register customer</h3><p>Create a customer record in MySQL.</p><b>Open form ↗</b></a>
-<a class="action-card" href="{{ url_for('new_account') }}"><span class="action-icon">▣</span><h3>Open account</h3><p>Connect a customer to a branch and account.</p><b>Open form ↗</b></a>
-<a class="action-card" href="{{ url_for('transactions') }}"><span class="action-icon">↔</span><h3>Move money</h3><p>Deposit, withdraw or transfer in the demo.</p><b>View transactions ↗</b></a>
-<a class="action-card" href="{{ url_for('loans') }}"><span class="action-icon">⌂</span><h3>Loan records</h3><p>Record loan applications and statuses.</p><b>Manage loans ↗</b></a>
+
+<section aria-labelledby="summary-heading">
+  <div class="section-head">
+    <div><p class="eyebrow">AT A GLANCE</p><h2 id="summary-heading">Record summary</h2></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><span>Total customers</span><strong>{{ stats.customers }}</strong><small>Registered profiles</small></div>
+    <div class="stat"><span>Bank accounts</span><strong>{{ stats.accounts }}</strong><small>Active and inactive</small></div>
+    <div class="stat"><span>Transactions</span><strong>{{ stats.transactions }}</strong><small>Recorded entries</small></div>
+    <div class="stat"><span>Loan records</span><strong>{{ stats.loans }}</strong><small>Applications</small></div>
+  </div>
+</section>
+
+<section aria-labelledby="manage-heading">
+  <div class="section-head">
+    <div><p class="eyebrow">PROJECT RECORDS</p><h2 id="manage-heading">Manage records</h2></div>
+  </div>
+  <div class="action-grid">
+    <a class="action-card" href="{{ url_for('customers') }}"><h3>Customers</h3><p>View customer details and register new customers.</p><span class="text-link">View customers</span></a>
+    <a class="action-card" href="{{ url_for('accounts') }}"><h3>Accounts</h3><p>Review account holders, branches and balances.</p><span class="text-link">View accounts</span></a>
+    <a class="action-card" href="{{ url_for('transactions') }}"><h3>Transactions</h3><p>Record deposits, withdrawals and transfers.</p><span class="text-link">View transactions</span></a>
+    <a class="action-card" href="{{ url_for('loans') }}"><h3>Loans</h3><p>Manage loan applications and their payments.</p><span class="text-link">View loans</span></a>
+  </div>
 </section>
 {% endblock %}

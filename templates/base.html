@@ -1,28 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123c70">
 <title>{% block title %}Project KASHI{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="{{ url_for('index') }}"><span class="logo">K</span><span>PROJECT KASHI<small>Banking Management System</small></span></a>
-  <nav>
-    <a href="{{ url_for('index') }}">Dashboard</a>
-    <a href="{{ url_for('customers') }}">Customers</a>
-    <a href="{{ url_for('accounts') }}">Accounts</a>
-    <a href="{{ url_for('transactions') }}">Transactions</a>
-    <a href="{{ url_for('loans') }}">Loans</a>
-    <a href="{{ url_for('loan_payments') }}">Loan Payments</a>
+<header class="site-header">
+  <div class="masthead">
+    <a class="brand" href="{{ url_for('index') }}">
+      <span class="brand-mark" aria-hidden="true">K</span>
+      <span class="brand-copy"><strong>Project KASHI</strong><small>Banking Management System</small></span>
+    </a>
+    <span class="demo-label">STUDENT PROJECT · DEMO ONLY</span>
+  </div>
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="{{ url_for('index') }}"{% if request.endpoint == 'index' %} class="active" aria-current="page"{% endif %}>Dashboard</a>
+    <a href="{{ url_for('customers') }}"{% if request.endpoint in ['customers', 'new_customer'] %} class="active" aria-current="page"{% endif %}>Customers</a>
+    <a href="{{ url_for('accounts') }}"{% if request.endpoint in ['accounts', 'new_account'] %} class="active" aria-current="page"{% endif %}>Accounts</a>
+    <a href="{{ url_for('transactions') }}"{% if request.endpoint == 'transactions' %} class="active" aria-current="page"{% endif %}>Transactions</a>
+    <a href="{{ url_for('loans') }}"{% if request.endpoint == 'loans' %} class="active" aria-current="page"{% endif %}>Loans</a>
+    <a href="{{ url_for('loan_payments') }}"{% if request.endpoint == 'loan_payments' %} class="active" aria-current="page"{% endif %}>Loan payments</a>
   </nav>
 </header>
 <main class="container">
 {% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}{% for category, message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+{% if messages %}{% for category, message in messages %}<div class="alert {{ category }}" role="status">{{ message }}</div>{% endfor %}{% endif %}
 {% endwith %}
 {% block content %}{% endblock %}
 </main>
-<footer>Project KASHI · Academic DBMS prototype · Not a real banking service</footer>
+<footer>Project KASHI <span aria-hidden="true">·</span> Academic DBMS prototype <span aria-hidden="true">·</span> Not a real banking service</footer>
 </body>
 </html>
